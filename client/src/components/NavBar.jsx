@@ -6,6 +6,7 @@ const NavBar = () => {
     <nav className="flex flex-col sm:flex-row justify-between items-start sm:items-center px-5 py-5 fixed top-0 left-0 right-0 shadow-md gap-1 sm:gap-0 z-30 bg-white">
       {/* {logo and site name} */}
       <div className="flex justify-between items-center">
+        <img src="/picprismlogo.png" alt="Logo" className="w-[50px]" />
         <Link to="/" className="font-bold text-3xl">PicPrism</Link>
       </div>
       {/* {list of other tabs} */}
