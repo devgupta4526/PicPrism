@@ -1,29 +1,32 @@
-const express = require("express")
-const dotenv = require("dotenv")
-const {readdirSync} = require("fs")
+const express = require("express");
+const dotenv = require("dotenv");
+const { readdirSync } = require("fs");
+const cors = require("cors");
 
-const app = express()
-const authRoute = require("./routes/auth.route")
-const connectDB = require("./db/connection")
+const app = express();
+dotenv.config();
 
-dotenv.config()
-
+const connectDB = require("./db/connection");
 const port = process.env.PORT || 3000;
 
-connectDB()
+// Middleware setup
+app.use(cors());
+app.use(express.json());
 
-readdirSync("./routes").map((route)=>{
-    app.use("/api",require(`./routes/${route}`))
-})
+// Database connection
+connectDB();
 
-app.get("/", (req,res) =>{
+// Routes setup
+readdirSync("./routes").map((route) => {
+    app.use("/api", require(`./routes/${route}`));
+});
+
+// Basic route
+app.get("/", (req, res) => {
     res.send("Hello");
-})
+});
 
-
-
-
-
-app.listen(port,() =>{
+// Start the server
+app.listen(port, () => {
     console.log(`Server is started!!!! Port : ${port}`);
-})
+});
