@@ -13,7 +13,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState("buyer");
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     try {
 
